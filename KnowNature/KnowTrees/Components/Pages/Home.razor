@@ -1,0 +1,17 @@
+﻿@page "/"
+
+<PageTitle>Home</PageTitle>
+
+@inject IJSRuntime JS
+
+<div id='container' style='width: 100vw; height: 100vh;'></div>
+
+@code {
+    protected override async void OnAfterRender(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await JS.InvokeVoidAsync("loadPDF", "#container", "data/PeopleTree.pdf");
+        }
+    }
+}
